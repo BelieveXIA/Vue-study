@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="./Vue-a.js"></script><!-- 引入vue库最好在head中-->
+</head>
+<body>
+    <div id="root">
+    	<h1>hello {{msg}}</h1>
+    	<h1>{{number}}</h1>
+        <h2 v-text="number"></h2>
+        <h2 v-html="number"></h2>
+
+        <div v-text="content"></div>
+        <!--v-text会转义，保留html符号标签输出；v-html不会转义，直接输出要输出的内容（注意只有值）-->
+        <div v-html="content"></div>
+
+        <div @click="handleClick">{{msg}}</div><!--"v-on: 等于 @"这是一个常用的缩写-->
+    </div>
+   
+    <script>
+        new Vue({
+          el:"#root",
+          //template:'',
+          data: {
+          msg:" world",
+          number: 123,
+          content:"<h1>hello</h1>"
+          },
+          methods: {
+          	handleClick: function () {
+                 this.msg=" hello"
+          		//直接修改msg的值，从而点击world改变成为hello；this.msg就是指实例vue里面的data{}里的msg
+          	}
+          }
+    })
+    </script>
+</body>
+</html>
+

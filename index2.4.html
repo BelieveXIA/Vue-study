@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性绑定和双向数据绑定</title>
+	  <script src="./Vue-a.js"></script>
+</head>
+<body>
+	<div id="root">
+		<div v-bind:title="title">{{msg}}</div>
+		<div :title="'Jane '+title">{{msg}}</div>
+		<!--"v-bind: 等于 :"属性绑定，加上此模板后后面的之变成了属性值，此处等于数据data里的title属性，还可以加引号写入值-->
+		<input v-model="content"/>
+		<!--双向数据绑定用v-model来绑定data里的数值，并随input输入改变content值；注意：当无法出现数据绑定时，先单向绑定vaule=”content”-->
+		<div>{{content}}</div>
+	</div>
+	<script >
+		new Vue({
+			el: "#root",
+			data:{
+				msg:"hello world",
+				title:"this is hello world",
+				content:"this is content"
+			}
+			
+		})
+	</script>
+</body>
+</html>
