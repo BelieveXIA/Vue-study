@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>monitor</title>
+	<script src="./Vue-a.js"></script>
+</head>
+<body>
+	<div id="root" >
+	<h1>{{msg}}</h1>
+	  姓：<input type="" name="" v-model="firstName"/>
+      名：<input type="" name="" v-model="lastName"/>
+      <div>{{fullName}}</div>
+      <div>{{count}}</div>
+    </div>
+
+	<script type="text/javascript">
+		new Vue({
+			el:"#root",
+			data: {  
+				msg:"hello",
+				   firstName:"",
+                   lastName:"",
+                   count:0//监听器，记录点击键盘次数
+                 },
+            computed: {
+                //计算属性
+                fullName: function () {
+                    return this.firstName+' '+this.lastName
+                }
+            },
+            watch: {
+                //监听器
+                fullName:function () {
+                this.count ++
+            }
+          }
+		})
+	</script>
+
+</body>
+</html>
