@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todolist组件</title>
+	<script src="./Vue-a.js"></script>
+</head>
+<body>
+	<div id="root">
+		<div>
+			<input  v-model="inputvalue"/>
+			<button @click="handleSublime">提交</button>
+		</div>
+		<ul>
+			<todo-item
+			v-for='(item ,index) of list'
+			:key = "index"
+			:content = "item"
+		    :index = "index"
+		    @delete="handledelete"
+			></todo-item>
+		</ul>
+	</div>
+
+	<script type="">
+
+	 Vue.component('todo-item',{
+	 	        props:['content', 'index'],
+		        template:'<li @click="handleclick">{{content}}</li>',
+		        methods:{
+		        	handleclick: function(){
+		        		this.$emit('delete',this.index);
+		        	},		      
+		        }
+		 }) //这是全局组件
+
+	// var Todoitem = {
+	// 	template:'<li>item</li>'
+	// }//局部组件
+
+	new Vue({
+		el:"#root",
+		// components:{
+		// 	'todo-item':Todoitem
+		// },//局部组件的声明
+		data:{
+			inputvalue:"",
+			list:[]
+		},
+		methods:{
+          handleSublime:function () {
+	           this.list.push(this.inputvalue);
+	           this.inputvalue = '';
+            },
+          handledelete:function(index){
+		        this.list.splice(index,1);
+	        }
+		}
+	})
+	</script>
+</body>
+</html>
